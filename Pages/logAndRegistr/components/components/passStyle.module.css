@@ -1,0 +1,10 @@
+.eye {
+    position: absolute;
+    top: 30%;
+    right: 5px;
+    cursor: pointer;
+}
+
+.input {
+    position: relative;
+}

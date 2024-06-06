@@ -1,0 +1,108 @@
+.content {
+    background-color: rgb(237, 205, 136);
+    border-radius: 20% 0;
+    min-width: 300px;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+
+    a {
+        font-size: 18px;
+        color: blue;
+        cursor: pointer;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input {
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+    }
+}
+
+
+.button {
+    width: 150px;
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
+
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+
+    font-size: 16px;
+    transition: all 0.3s;
+    z-index: 1;
+
+    background-color: rgb(97, 178, 249);
+    color: white;
+
+    text-align: center;
+    cursor: pointer;
+}
+
+.button::before {
+    content: '';
+    width: 0;
+    height: 300%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: #17C3B2;
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+.button:hover::before {
+    width: 105%;
+}
+
+.button:hover {
+    color: #111;
+}
+
+
+
+.profilePicCont {
+    padding: 10px;
+    width: 180px;
+    height: 18px;
+    background-color: white;
+    border-radius: 10px;
+
+    .profilPiclabel {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .icon {
+            font-size: 20px;
+            color: rgb(74, 213, 74);
+        }
+
+        p {
+            font-weight: bold;
+            color: rgb(255, 153, 0);
+        }
+    }
+
+    input {
+        display: none;
+    }
+}
