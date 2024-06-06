@@ -1,5 +1,5 @@
 .content {
-    background-color: rgb(237, 205, 136);
+    background-color: red;
     border-radius: 20% 0;
     min-width: 300px;
     width: fit-content;
@@ -27,6 +27,7 @@
         padding: 10px;
         border-radius: 10px;
         border: none;
+        width: 250px;
     }
 }
 
@@ -45,7 +46,7 @@
     transition: all 0.3s;
     z-index: 1;
 
-    background-color: rgb(97, 178, 249);
+    background-color: rgb(7, 134, 246);
     color: white;
 
     text-align: center;
@@ -60,7 +61,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
-    background: #17C3B2;
+    background: #03f7df;
     transition: .5s ease;
     display: block;
     z-index: -1;
@@ -78,7 +79,7 @@
 
 .profilePicCont {
     padding: 10px;
-    width: 180px;
+    width: 250px;
     height: 18px;
     background-color: white;
     border-radius: 10px;
@@ -98,7 +99,7 @@
 
         p {
             font-weight: bold;
-            color: rgb(255, 153, 0);
+            color: rgb(255, 140, 0);
         }
     }
 
