@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import chatStore from "../../chatStore.js";
 import { useNavigate } from "react-router-dom";
 import style from "./chat.module.css";
@@ -14,8 +14,7 @@ const Chat = () => {
   const [inputValue, setInputValue] = useState(false);
   const [deletedIndex, setDeletedIndex] = useState(false);
   const [viewEmoji, setViewEmoji] = useState(false);
-
-  const messageBoxRef = useRef();
+  const messagesEndRef = useRef(null);
 
   const { entry, myData, setEntry, setMyData } = chatStore();
   const [messages, setMessages] = useState(false);
@@ -45,6 +44,10 @@ const Chat = () => {
       setMessages(data);
     });
   }, []);
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
 
   let currentMsg = {
     mail: myData[1].Mail,
@@ -58,8 +61,14 @@ const Chat = () => {
     if (inputValue.replace(/\s+/gi, "")) {
       AllMsg.push(currentMsg);
       Set("messages", AllMsg);
+      setInputValue(false);
+      scrollToBottom(); 
     }
   }
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   function logOut() {
     setMyData([]);
@@ -67,8 +76,14 @@ const Chat = () => {
     navigate("/");
   }
 
+  const enterKey = (event) => {
+    if (event.key === "Enter") {
+      msgSend();
+    }
+  };
+
   return (
-    <div className={style.chatContainer}>
+    <div className={style.chatContainer} onKeyDown={enterKey} tabIndex="0">
       <div className={style.chatBoard}>
         <div className={style.msgsBoard}>
           {AllMsg.map((data, index) => (
@@ -79,6 +94,7 @@ const Chat = () => {
               deleteMsg={setDeletedIndex}
             />
           ))}
+          <div ref={messagesEndRef} />
         </div>
         <div className={style.senderBoard}>
           <button className={style.btnLogOut} onClick={logOut}>
@@ -88,7 +104,7 @@ const Chat = () => {
             <TextInput
               setValue={setInputValue}
               placeholder="Message"
-              ref={messageBoxRef}
+              val={inputValue}
             />
 
             <div
@@ -105,7 +121,7 @@ const Chat = () => {
                 viewEmoji && style.viewEmoji
               }`}
             >
-              <Emojies messageBoxRef={messageBoxRef} emojiView={setViewEmoji} />
+              <Emojies setInputValue={setInputValue} emojiView={setViewEmoji} />
             </div>
           </div>
 

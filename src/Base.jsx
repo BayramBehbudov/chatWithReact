@@ -53,7 +53,6 @@ async function userData(mail) {
 
   return Object.entries(allUserData).filter((data) => data[1].Mail == mail)[0];
 }
-
 async function allMsg() {
   let data = await Get("messages");
   data = Array.isArray(data) ? data : [];

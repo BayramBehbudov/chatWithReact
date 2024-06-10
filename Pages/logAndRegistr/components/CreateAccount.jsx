@@ -1,5 +1,5 @@
 import style from "./style.module.css";
-import { Push, Uploader } from "../../../src/Base.jsx";
+import { Push, Uploader, UserData } from "../../../src/Base.jsx";
 import { useState } from "react";
 import Email from "./components/MailInput.jsx";
 import Input from "./components/PasswordInput.jsx";
@@ -12,6 +12,7 @@ const CreateAccount = ({ navPage }) => {
   const [mailValue, setMailValue] = useState(false);
   const [passValue, setPassValue] = useState(false);
   const [fileValue, setFileValue] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   function showWarnMsg(text) {
     toast.error(text, {
@@ -25,28 +26,42 @@ const CreateAccount = ({ navPage }) => {
       autoClose: 2000,
     });
   }
+  function showInfoMsg(text) {
+    toast.info(text, {
+      position: "top-right",
+      autoClose: 2000,
+    });
+  }
+
   async function setData() {
+    console.log("click");
+    showInfoMsg("Please wait for the registration to complete");
+    setDisabled(true);
+
     if (!nameValue) {
       showWarnMsg("Enter Name");
+      setDisabled(false);
       return;
     }
 
     if (!mailValue) {
       showWarnMsg("Enter Correct Email");
+      setDisabled(false);
       return;
     }
 
     if (!passValue) {
       showWarnMsg("Enter Correct Password");
+      setDisabled(false);
       return;
     }
 
     if (!fileValue) {
       showWarnMsg("Enter Profile Picture");
+      setDisabled(false);
       return;
     }
-
-    if (nameValue && mailValue && passValue && fileValue) {
+    if (!(await UserData(mailValue))) {
       const data = {
         Name: nameValue,
         Mail: mailValue,
@@ -56,6 +71,9 @@ const CreateAccount = ({ navPage }) => {
       Push("users", data);
       showSuccesMsg("Registration Complete");
       navPage("login");
+    } else {
+      showWarnMsg("This user already exists");
+      navPage("login");
     }
   }
 
@@ -63,13 +81,14 @@ const CreateAccount = ({ navPage }) => {
     <div className={style.content}>
       <h1>Registration </h1>
       <div>
-        <TextInput setValue={setNameValue} placeholder="Name" />
+        <TextInput setValue={setNameValue} placeholder="Name" val={nameValue} />
         <Email setValue={setMailValue} />
         <Input setValue={setPassValue} />
         <FileInput setValue={setFileValue} />
       </div>
       <button
         className={style.button}
+        disabled={disabled}
         onClick={() => {
           setData();
         }}

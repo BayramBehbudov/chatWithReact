@@ -1,6 +1,6 @@
 import style from "../chat.module.css";
 
-const Emojies = ({ messageBoxRef, emojiView }) => {
+const Emojies = ({ setInputValue, emojiView }) => {
   const emojis = [
     "😀",
     "😃",
@@ -162,7 +162,7 @@ const Emojies = ({ messageBoxRef, emojiView }) => {
 
   function handleMsg(emoji) {
     emojiView(false);
-    messageBoxRef.current.value += emoji;
+    setInputValue((prev) => (prev ? (prev += emoji) : emoji));
   }
 
   return (
@@ -171,7 +171,7 @@ const Emojies = ({ messageBoxRef, emojiView }) => {
         <span
           key={`emoji` + index}
           onClick={() => {
-            handleMsg(emoji)
+            handleMsg(emoji);
           }}
           className={style.emojItem}
         >
@@ -183,4 +183,3 @@ const Emojies = ({ messageBoxRef, emojiView }) => {
 };
 
 export default Emojies;
-
