@@ -80,7 +80,7 @@ const Chat = () => {
           <button className={style.btnLogOut} onClick={logOut}>
             Log Out
           </button>
-          <TextInput setValue={setInputValue} placeholder="Message" />
+          <TextInput setValue={setInputValue} placeholder="Message"  />
           <FontAwesomeIcon
             icon={faPlay}
             className={style.iconSender}
