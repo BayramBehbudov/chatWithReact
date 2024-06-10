@@ -1,5 +1,5 @@
 import style from "../chat.module.css";
-import UseChangedElement from "../../../ChangedElement";
+import UseChangedElement from "../../../chatStore";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

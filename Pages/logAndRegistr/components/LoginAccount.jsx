@@ -4,13 +4,13 @@ import { UserData } from "../../../src/Base.jsx";
 import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
-import UseChangedElement from "../../../ChangedElement.js";
+import ChatStore from "../../../chatStore.js";
 
 import Email from "./components/MailInput.jsx";
 import Password from "./components/PasswordInput.jsx";
 
 const Login = ({ navPage }) => {
-  const { setEntry, setMyData } = UseChangedElement();
+  const { setEntry, setMyData } = ChatStore();
 
   const [password, setPassword] = useState(false);
   const [mail, setMail] = useState(false);

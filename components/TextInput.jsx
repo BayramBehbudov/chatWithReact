@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 
-const TextInput = ({ setValue, placeholder, val }) => {
+const TextInput = forwardRef(({ setValue, placeholder, val }, ref) => {
   const [value, setInputValue] = useState(false);
 
   useEffect(() => {
@@ -13,6 +13,7 @@ const TextInput = ({ setValue, placeholder, val }) => {
 
   return (
     <input
+      ref={ref}
       type="text"
       placeholder={placeholder}
       value={val}
@@ -21,6 +22,6 @@ const TextInput = ({ setValue, placeholder, val }) => {
       }}
     />
   );
-};
+});
 
 export default TextInput;

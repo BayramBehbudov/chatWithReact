@@ -43,13 +43,51 @@
     justify-content: center;
     gap: 10px;
 
+    .messageInput {
+        position: relative;
 
-    input {
-        width: 500px;
-        padding: 10px;
-        border-radius: 10px;
-        border: none;
+
+        input {
+            width: 500px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .emojiesIcon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            color: rgb(113, 95, 244);
+            font-size: 20px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .emojiesBoard {
+            position: absolute;
+            top: -100px;
+            right: 0;
+            background-color: white;
+            width: 300px;
+            height: 70px;
+            border-radius: 20px;
+            padding: 10px 20px;
+            overflow: scroll;
+            scrollbar-width: none;
+
+            display: none;
+        }
+
+        .viewEmoji {
+            display: block;
+        }
+        
+        .emojItem{
+            cursor: pointer;
+        }
     }
+
 }
 
 .btnLogOut {

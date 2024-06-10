@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-const UseChangedElement = create((set) => ({
+const chatStore = create((set) => ({
   myData: [
     "",
     {
@@ -14,4 +14,4 @@ const UseChangedElement = create((set) => ({
   setMyData: (item) => set((state) => ({ myData: (state.myData = item) })),
 }));
 
-export default UseChangedElement;
+export default chatStore;
