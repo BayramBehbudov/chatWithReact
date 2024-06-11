@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faFaceSmile } from "@fortawesome/free-solid-svg-icons";
 import { Set, AllMsg, ListenerMsgs, DeleteMsg } from "../../src/Base.jsx";
 import Emojies from "./components/Emojies.jsx";
+import { toast } from "react-toastify";
 
 const Chat = () => {
   const [inputValue, setInputValue] = useState(false);
@@ -22,6 +23,15 @@ const Chat = () => {
   const { entry, myData, setEntry, setMyData } = chatStore();
   const [messages, setMessages] = useState(false);
   const navigate = useNavigate();
+
+  const showSuccessMsg = (text) => {
+    toast.success(text, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
+  };
+
   if (deletedIndex) {
     AllMsg.splice(+deletedIndex, 1);
     DeleteMsg(deletedIndex);
@@ -72,6 +82,7 @@ const Chat = () => {
       AllMsg[currentMsgIndex].text = inputValue;
       setInputValue(false);
       setMsgEditor(false);
+      showSuccessMsg("Your message has been updated");
     }
   }
 
