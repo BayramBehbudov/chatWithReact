@@ -1,9 +1,12 @@
 import style from "../chat.module.css";
 import UseChangedElement from "../../../chatStore";
-import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleXmark,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Msg = ({ msg, index, deleteMsg }) => {
+const Msg = ({ msg, index, deleteMsg,editMsg }) => {
   const { myData } = UseChangedElement();
   return (
     <div
@@ -17,13 +20,22 @@ const Msg = ({ msg, index, deleteMsg }) => {
       <div className={style.textContainer}>{msg.text}</div>
       <img src={msg.url} className={style.profilePic} />
       {msg.mail === myData[1].Mail && (
-        <FontAwesomeIcon
-          icon={faCircleXmark}
-          className={style.delete}
-          onClick={() => {
-            deleteMsg(index);
-          }}
-        />
+        <div className={style.icons}>
+          <FontAwesomeIcon
+            icon={faCircleXmark}
+            className={style.deleteMsgIcon}
+            onClick={() => {
+              deleteMsg(index);
+            }}
+          />
+          <FontAwesomeIcon
+            icon={faPenToSquare}
+            className={style.editMsgIcon}
+            onClick={() => {
+              editMsg(index);
+            }}
+          />
+        </div>
       )}
     </div>
   );

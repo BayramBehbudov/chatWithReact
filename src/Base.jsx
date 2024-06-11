@@ -104,6 +104,5 @@ export const Push = pushDataInDatabase;
 export const Uploader = uploadFile;
 export const UserData = userData;
 export const AllMsg = await allMsg();
-
 export const ListenerMsgs = listenerMsgs;
 export const DeleteMsg = removeDataFromDatabase;

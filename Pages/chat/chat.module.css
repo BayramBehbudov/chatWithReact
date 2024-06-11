@@ -82,8 +82,8 @@
         .viewEmoji {
             display: block;
         }
-        
-        .emojItem{
+
+        .emojItem {
             cursor: pointer;
         }
     }
@@ -185,12 +185,26 @@
     }
 }
 
-.delete {
-    position: absolute;
-    top: 50%;
-    left: -30px;
+.deleteMsgIcon {
     cursor: pointer;
-    transform: translateY(-50%);
     font-size: 20px;
-    color: rgb(240, 9, 9);
+    color: red;
+}
+
+.editMsgIcon {
+    cursor: pointer;
+    font-size: 20px;
+    color: blue;
+}
+
+.icons {
+    position: absolute;
+
+    top: 10%;
+    left: -30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 55px;
 }

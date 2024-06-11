@@ -14,6 +14,9 @@ const Chat = () => {
   const [inputValue, setInputValue] = useState(false);
   const [deletedIndex, setDeletedIndex] = useState(false);
   const [viewEmoji, setViewEmoji] = useState(false);
+  const [msgEditor, setMsgEditor] = useState(false);
+  const [currentMsgIndex, setCurrentMsgIndex] = useState(false);
+
   const messagesEndRef = useRef(null);
 
   const { entry, myData, setEntry, setMyData } = chatStore();
@@ -48,7 +51,6 @@ const Chat = () => {
     scrollToBottom();
   }, [messages]);
 
-
   let currentMsg = {
     mail: myData[1].Mail,
     name: myData[1].Name,
@@ -58,11 +60,18 @@ const Chat = () => {
   };
 
   function msgSend() {
-    if (inputValue.replace(/\s+/gi, "")) {
-      AllMsg.push(currentMsg);
-      Set("messages", AllMsg);
+    if (!msgEditor && inputValue) {
+      if (inputValue.replace(/\s+/gi, "")) {
+        AllMsg.push(currentMsg);
+        Set("messages", AllMsg);
+        setInputValue(false);
+        scrollToBottom();
+      }
+    } else {
+      Set(`messages/${currentMsgIndex}/text`, inputValue);
+      AllMsg[currentMsgIndex].text = inputValue;
       setInputValue(false);
-      scrollToBottom(); 
+      setMsgEditor(false);
     }
   }
 
@@ -92,6 +101,11 @@ const Chat = () => {
               key={`message${index}`}
               index={index}
               deleteMsg={setDeletedIndex}
+              editMsg={() => {
+                setMsgEditor(true);
+                setInputValue(AllMsg[index].text);
+                setCurrentMsgIndex(index);
+              }}
             />
           ))}
           <div ref={messagesEndRef} />
